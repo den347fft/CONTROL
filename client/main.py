@@ -5,7 +5,9 @@ client.connect(('192.168.0.101', 1234))
 
 while True:
     try:
-        x = input(">>")   
+        x = input(">>")
+        if x == "q":
+            quit()   
         client.send(x.encode("utf-8"))
     except ConnectionResetError:
         if x == "q":
