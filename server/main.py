@@ -9,24 +9,26 @@ server.bind((socket.gethostbyname_ex(socket.gethostname())[-1][-1], 1234))
 server.listen()
 
 while True:
-    user,adres = server.accept()
-    if user:
-        print("Подключено устройство")
-    try:
-        while True:
+          try:
+
+            user,adres = server.accept()
+            if user:
+                print("Подключено устройство")
             data = user.recv(1024).decode("utf-8").lower()
-            print(data)
             if "say" in data:
                 engine.say(data[3:])
                 engine.runAndWait()
-            if data == "press":
+            if "press" in data:
                 try:
-                    keyboard.press_and_release(user.recv(1024).decode("utf-8").lower())
+                    keyboard.press_and_release(data[6:])
                 except Exception:
                     pass
-            if data == "eve":
-                 eval(user.recv(1024).decode("utf-8").lower())
-            if data == "browser":
-                 webbrowser.open_new_tab(user.recv(1024).decode("utf-8").lower())
-    except Exception:
+            if "eve" in data:
+                 try:
+                    eval(data[4:])
+                 except Exception:
                     pass
+            if "browser" in data:
+                 webbrowser.open_new_tab(data[8:])
+          except Exception:
+                pass
