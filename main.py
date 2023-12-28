@@ -10,6 +10,8 @@ server.listen()
 
 while True:
     user,adres = server.accept()
+    if user:
+        print("Подключено устройство")
 
     while True:
         data = user.recv(1024).decode("utf-8").lower()
