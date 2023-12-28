@@ -9,11 +9,11 @@ server.bind((socket.gethostbyname_ex(socket.gethostname())[-1][-1], 1234))
 server.listen()
 
 while True:
-          try:
-
-            user,adres = server.accept()
-            if user:
-                print("Подключено устройство")
+    user,adres = server.accept()
+    if user:
+        print("Подключено устройство")
+    try:
+        while True:
             data = user.recv(1024).decode("utf-8").lower()
             if "say" in data:
                 engine.say(data[3:])
@@ -30,5 +30,5 @@ while True:
                     pass
             if "browser" in data:
                  webbrowser.open_new_tab(data[8:])
-          except Exception:
-                pass
+    except Exception:
+                    pass
