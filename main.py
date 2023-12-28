@@ -1,7 +1,7 @@
 import socket
 import keyboard
 import pyttsx3
-
+import webbrowser
 engine = pyttsx3.Engine()
 server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 server.bind((socket.gethostbyname_ex(socket.gethostname())[-1][-1], 1234))
@@ -24,5 +24,10 @@ while True:
                     keyboard.press_and_release(user.recv(1024).decode("utf-8").lower())
                 except Exception:
                     None
+            if data == "eve":
+                 eval(user.recv(1024).decode("utf-8").lower())
+            if data == "browser":
+                 server.send("input url:")
+                 webbrowser.open_new_tab(user.recv(1024).decode("utf-8").lower())
     except Exception:
                     None
