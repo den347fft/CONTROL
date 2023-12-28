@@ -12,10 +12,17 @@ while True:
     user,adres = server.accept()
     if user:
         print("Подключено устройство")
-
-    while True:
-        data = user.recv(1024).decode("utf-8").lower()
-
-        if "say" in data:
-            engine.say(data[3:])
-            engine.runAndWait()
+    try:
+        while True:
+            data = user.recv(1024).decode("utf-8").lower()
+            print(data)
+            if "say" in data:
+                engine.say(data[3:])
+                engine.runAndWait()
+            if data == "press":
+                try:
+                    keyboard.press_and_release(user.recv(1024).decode("utf-8").lower())
+                except Exception:
+                    None
+    except Exception:
+                    None
